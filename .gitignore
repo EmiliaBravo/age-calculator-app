@@ -17,6 +17,6 @@
 
 design/
 
-.md
+*.md
 
 !README.md
