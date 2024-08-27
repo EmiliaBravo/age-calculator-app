@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- displays site properly based on user's device -->
     <title>Frontend Mentor | Age calculator app</title>
-    <script src="/script.js"></script>
 
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     <style>
@@ -21,12 +20,15 @@
   <body>
     <div>
       <form id="userInput">
-        <label for="day">DAY</label>
-        <input type="number" id="day" placeholder="DD" min="0" />
-        <label for="month">MONTH</label>
-        <input type="number" id="month" placeholder="MM" min="0" />
-        <label for="year">YEAR</label>
-        <input type="number" id="year" placeholder="YYYY" min="0" />
+        <label for="dayInput">DAY</label>
+        <input type="number" id="dayInput" placeholder="DD" min="0" />
+        <p class="error" id="day-error"></p>
+        <label for="monthInput">MONTH</label>
+        <input type="number" id="monthInput" placeholder="MM" min="0" />
+        <p class="error" id="month-error"></p>
+        <label for="yearInput">YEAR</label>
+        <input type="number" id="yearInput" placeholder="YYYY" />
+        <p class="error" id="year-error"></p>
         <div>
           <hr />
           <button type="submit">
@@ -35,10 +37,19 @@
         </div>
       </form>
     </div>
-    <div id="output">
-      <p id="yearsOutput"><span>--</span>years</p>
-      <p id="monthsOutput"><span>--</span>months</p>
-      <p id="daysOutput"><span>--</span>days</p>
+    <div id="outputBox">
+      <p class="outputLine">
+        <span id="yearsOutput" style="color: hsl(259, 100%, 65%)">--</span
+        ><span id="yearsText"> years</span>
+      </p>
+      <p class="outputLine">
+        <span id="monthsOutput" style="color: hsl(259, 100%, 65%)">--</span
+        ><span id="monthsText"> months</span>
+      </p>
+      <p class="outputLine">
+        <span id="daysOutput" style="color: hsl(259, 100%, 65%)">--</span
+        ><span id="daysText"> days</span>
+      </p>
     </div>
 
     <div class="attribution">
@@ -46,7 +57,9 @@
       <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
         Frontend Mentor
       </a>
-        . Coded by <a href="https://github.com/EmiliaBravo" target="_blank">Emilia Bravo</a>.
+      . Coded by
+      <a href="https://github.com/EmiliaBravo" target="_blank">Emilia Bravo</a>.
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
