@@ -1,10 +1,37 @@
+const handleEnter = (e) => {
+  if (e.key === "Enter") {
+    e.target.blur();
+  }
+};
+
 let inputForm = document.getElementById("userInput");
 
 inputForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  document.getElementById("yearsOutput").innerText = "--";
-  document.getElementById("monthsOutput").innerText = "--";
-  document.getElementById("daysOutput").innerText = "--";
+
+  let daysOutput = document.getElementById("daysOutput");
+  let monthsOutput = document.getElementById("monthsOutput");
+  let yearsOutput = document.getElementById("yearsOutput");
+
+  daysOutput.innerText = "- -";
+  monthsOutput.innerText = "- -";
+  yearsOutput.innerText = "- -";
+
+  let dayLabel = document.querySelector("label[for='dayInput']");
+  let monthLabel = document.querySelector("label[for='monthInput']");
+  let yearLabel = document.querySelector("label[for='yearInput']");
+
+  dayLabel.classList.remove("error");
+  monthLabel.classList.remove("error");
+  yearLabel.classList.remove("error");
+
+  let dayInput = document.getElementById("dayInput");
+  let monthInput = document.getElementById("monthInput");
+  let yearInput = document.getElementById("yearInput");
+
+  dayInput.classList.remove("error");
+  monthInput.classList.remove("error");
+  yearInput.classList.remove("error");
 
   let DOBday = document.getElementById("dayInput").value;
   let DOBmonth = document.getElementById("monthInput").value;
@@ -17,11 +44,9 @@ inputForm.addEventListener("submit", (e) => {
 
   let age = {};
 
-  console.log(DOBday, DOBmonth, DOByear);
-
   let errors = document.querySelectorAll(".error");
   for (let error of errors) {
-    error.style.display = "none";
+    error.innerText = "";
   }
 
   let dayError = document.getElementById("day-error");
@@ -33,31 +58,38 @@ inputForm.addEventListener("submit", (e) => {
 
   if (DOBday == "") {
     dayError.innerText = "This field is required";
-    dayError.style.display = "block";
+    dayLabel.classList.add("error");
+    dayInput.classList.add("error");
     isValid = false;
   }
   if (DOBmonth == "") {
     monthError.innerText = "This field is required";
-    monthError.style.display = "block";
+    monthLabel.classList.add("error");
+    monthInput.classList.add("error");
     isValid = false;
   }
   if (DOByear == "") {
     yearError.innerText = "This field is required";
-    yearError.style.display = "block";
+    yearLabel.classList.add("error");
+    yearInput.classList.add("error");
     isValid = false;
-  } else if (DOBday == "0" || DOBday > 31) {
+  }
+  if (DOBday == "0" || DOBday > 31) {
     dayError.innerText = "Must be a valid day";
-    dayError.style.display = "block";
+    dayLabel.classList.add("error");
+    dayInput.classList.add("error");
     isValid = false;
   }
   if (DOBmonth == "0" || DOBmonth > 12) {
     monthError.innerText = "Must be a valid month";
-    monthError.style.display = "block";
+    monthLabel.classList.add("error");
+    monthInput.classList.add("error");
     isValid = false;
   }
   if (DOByear > currYear) {
     yearError.innerText = "Must be in the past";
-    yearError.style.display = "block";
+    yearLabel.classList.add("error");
+    yearInput.classList.add("error");
     isValid = false;
   }
   if (
@@ -65,7 +97,12 @@ inputForm.addEventListener("submit", (e) => {
     (DOBmonth > currMonth || (DOBmonth == currMonth && DOBday > currDay))
   ) {
     yearError.innerText = "Must be in the past";
-    yearError.style.display = "block";
+    dayLabel.classList.add("error");
+    dayInput.classList.add("error");
+    monthLabel.classList.add("error");
+    monthInput.classList.add("error");
+    yearLabel.classList.add("error");
+    yearInput.classList.add("error");
     isValid = false;
   }
   if (
@@ -73,7 +110,12 @@ inputForm.addEventListener("submit", (e) => {
     (DOBmonth == 2 && DOBday > 29)
   ) {
     dayError.innerText = "Must be a valid date";
-    dayError.style.display = "block";
+    dayLabel.classList.add("error");
+    dayInput.classList.add("error");
+    monthLabel.classList.add("error");
+    monthInput.classList.add("error");
+    yearLabel.classList.add("error");
+    yearInput.classList.add("error");
     isValid = false;
   }
   if (
@@ -82,9 +124,15 @@ inputForm.addEventListener("submit", (e) => {
     !(DOByear % 400 == 0 || (DOByear % 4 == 0 && DOByear % 100 !== 0))
   ) {
     dayError.innerText = "Must be a valid date";
-    dayError.style.display = "block";
+    dayLabel.classList.add("error");
+    dayInput.classList.add("error");
+    monthLabel.classList.add("error");
+    monthInput.classList.add("error");
+    yearLabel.classList.add("error");
+    yearInput.classList.add("error");
     isValid = false;
   } else if (isValid == true) {
+    // calculate years
     let ageYears = currYear - DOByear;
     let ageMonths;
     let ageDays;
@@ -108,14 +156,30 @@ inputForm.addEventListener("submit", (e) => {
       }
     }
 
-    age = {
-      years: ageYears,
-      months: ageMonths,
-      days: ageDays,
+    const countTo = (element, finish) => {
+      let start = 0;
+      let interval = finish <= 31 ? 100 : finish <= 500 ? 1000 / finish : 4;
+
+      if (start == finish) {
+        element.innerText = start;
+        return;
+      }
+      if (finish > 500) {
+        element.innerText = finish;
+        return;
+      }
+      let counter = setInterval(() => {
+        start += 1;
+        element.innerText = start;
+
+        if (start == finish) {
+          clearInterval(counter);
+        }
+      }, interval);
     };
 
-    document.getElementById("yearsOutput").innerText = age.years;
-    document.getElementById("monthsOutput").innerText = age.months;
-    document.getElementById("daysOutput").innerText = age.days;
+    countTo(yearsOutput, ageYears);
+    countTo(monthsOutput, ageMonths);
+    countTo(daysOutput, ageDays);
   }
 });
