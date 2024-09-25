@@ -85,7 +85,7 @@ input:focus-visible {
   align-items: center;
 }
 
-hr {
+#line {
   width: 80%;
   height: 0px;
   border-color: hsl(0, 0%, 86%);
@@ -134,4 +134,94 @@ label.error {
 
 input.error {
   border-color: hsl(0, 100%, 67%);
+}
+
+#footerWrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+}
+
+footer {
+  text-align: center;
+  font-weight: 400;
+  font-size: 8px;
+  color: hsl(0, 1%, 44%);
+}
+
+footer a {
+  color: hsl(259, 100%, 65%);
+}
+
+@media screen and (max-width: 760px) {
+  body {
+    padding: 50px 20px;
+  }
+  #calculatorBox {
+    margin: 0;
+    width: 100%;
+    height: auto;
+    padding: 32px 24px;
+    border-radius: 20px 20px 100px 20px;
+  }
+
+  #inputsBox {
+    justify-content: space-between;
+  }
+
+  .singleInput {
+    width: 25%;
+    max-width: 128px;
+    margin-right: 0;
+  }
+
+  .singleInput label {
+    font-size: 8px;
+    margin-bottom: 4px;
+  }
+
+  input {
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  p.error {
+    font-size: 8px;
+  }
+
+  p.error:empty {
+    min-height: 12.5px;
+  }
+
+  #buttonBox {
+    flex-direction: column;
+    margin-top: 24px;
+    margin-bottom: -32px;
+  }
+
+  #line {
+    width: 100%;
+  }
+
+  button {
+    position: relative;
+    top: -33px;
+    z-index: 999;
+    padding: 12px;
+  }
+
+  button img {
+    height: 20px;
+  }
+
+  .outputLine {
+    font-size: 48px;
+    margin: -8px 0px;
+  }
+
+  #footerWrapper {
+    width: calc(100% - 40px);
+  }
 }
