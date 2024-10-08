@@ -22,10 +22,16 @@
   font-family: Poppins;
   box-sizing: border-box;
 }
+
 body {
   background-color: hsl(0, 0%, 94%);
   margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
 #calculatorBox {
   background-color: hsl(0, 0%, 100%);
   width: 760px;
@@ -99,6 +105,8 @@ button {
   border: 0;
   border-radius: 50%;
   padding: 20px;
+  width: 80px;
+  height: 80px;
 }
 
 button:hover {
@@ -137,9 +145,7 @@ input.error {
 }
 
 #footerWrapper {
-  position: absolute;
-  bottom: 0;
-  width: 100vw;
+  width: 100%;
 }
 
 footer {
@@ -153,9 +159,9 @@ footer a {
   color: hsl(259, 100%, 65%);
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 780px) {
   body {
-    padding: 50px 20px;
+    padding: 50px 50px 0px 50px;
   }
   #calculatorBox {
     margin: 0;
@@ -166,7 +172,7 @@ footer a {
   }
 
   #inputsBox {
-    justify-content: space-between;
+    justify-content: space-around;
   }
 
   .singleInput {
@@ -210,18 +216,60 @@ footer a {
     top: -33px;
     z-index: 999;
     padding: 12px;
+    height: 44px;
+    width: 44px;
   }
 
   button img {
     height: 20px;
   }
 
+  #outputBox {
+    margin-left: 48px;
+  }
+
   .outputLine {
     font-size: 48px;
     margin: -8px 0px;
   }
+}
 
-  #footerWrapper {
-    width: calc(100% - 40px);
+@media screen and (max-width: 540px) {
+  body {
+    padding: 50px 20px 0px 20px;
+  }
+
+  #inputsBox {
+    justify-content: space-between;
+  }
+
+  #outputBox {
+    margin-left: 0px;
+  }
+}
+
+@media screen and (max-width: 358px) {
+  .singleInput label {
+    font-size: 6px;
+    margin-bottom: 2px;
+  }
+
+  input {
+    font-size: 10px;
+  }
+
+  button {
+    top: -24px;
+    padding: 8px;
+    height: 32px;
+    width: 32px;
+  }
+
+  button img {
+    height: 16px;
+  }
+
+  .outputLine {
+    font-size: 32px;
   }
 }

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frontend Mentor | Age calculator app</title>
+    <title>Age calculator app</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -12,12 +12,24 @@
         <div id="inputsBox">
           <div class="singleInput">
             <label for="dayInput">DAY</label>
-            <input type="number" id="dayInput" placeholder="DD" min="0" onkeyup="handleEnter(event)"/>
+            <input
+              type="number"
+              id="dayInput"
+              placeholder="DD"
+              min="0"
+              onkeyup="handleEnter(event)"
+            />
             <p class="error" id="day-error"></p>
           </div>
           <div class="singleInput">
             <label for="monthInput">MONTH</label>
-            <input type="number" id="monthInput" placeholder="MM" min="0"  onkeyup="handleEnter(event)"/>
+            <input
+              type="number"
+              id="monthInput"
+              placeholder="MM"
+              min="0"
+              onkeyup="handleEnter(event)"
+            />
             <p class="error" id="month-error"></p>
           </div>
           <div class="singleInput">
@@ -59,15 +71,16 @@
       </div>
     </div>
     <div id="footerWrapper">
-    <footer>
-      Challenge by
-      <a href="https://www.frontendmentor.io/challenges" target="_blank">
-        Frontend Mentor
-      </a>
-      . Coded by
-      <a href="https://github.com/EmiliaBravo" target="_blank">Emilia Bravo</a>.
-    </footer>
-  </div>
+      <footer>
+        Challenge by
+        <a href="https://www.frontendmentor.io/challenges" target="_blank">
+          Frontend Mentor
+        </a>
+        . Coded by
+        <a href="https://github.com/EmiliaBravo" target="_blank">Emilia Bravo</a
+        >.
+      </footer>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
